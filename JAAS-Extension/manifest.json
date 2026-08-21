@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "JAAS Brigde",
+    "version": "3.0",
+    "description": "Ponte segura de integração entre Jira e AMEI7. Projeto in-house.",
+    "content_scripts":[
+        {
+            "matches": ["https://amorsaudesuporte.atlassian.net/jira/servicedesk/*"],
+            "js": ["scriptJIRA.js"]
+        },
+        {
+            "matches": ["https://amei.amorsaude.com.br/patient/*"],
+            "js": ["scriptAMEI.js"]
+        }       
+    ],
+    "host_permissions": [
+        "http://localhost:3333/*"
+    ],
+    "background": {
+        "service_worker":"background.js"
+    }
+}

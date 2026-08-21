@@ -6,21 +6,13 @@ const server = fastify()
 
 const database = new DatabaseMemory()
 
-await server.register(cors, {
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-    maxAge: 86400
-     
-})
-
 server.post('/pacientes', (request, reply) => {
-    const {CPF, Name, NameMom, email, Cel, cep, End, NumEnd, ComplementoEnd, CityEnd, StateEnd} = request.body
+    const {cpf, Name, sobreName,  NameMom, email, Cel, cep, End, NumEnd, ComplementoEnd, CityEnd, StateEnd} = request.body
 
     database.create({
-        CPF: CPF,
+        cpf: cpf,
         Name: Name,
+        sobreName: sobreName,
         NameMom: NameMom,
         email: email,
         Cel: Cel,
