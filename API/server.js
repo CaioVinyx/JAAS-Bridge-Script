@@ -1,9 +1,7 @@
 import { fastify } from 'fastify'
-import cors from '@fastify/cors'
 import { DatabaseMemory } from './database-memory.js'
 
 const server = fastify()
-
 const database = new DatabaseMemory()
 
 server.post('/pacientes', (request, reply) => {

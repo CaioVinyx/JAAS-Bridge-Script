@@ -1,6 +1,7 @@
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>{
+//Request JSON from scripCatch.js and post to API
+chrome.runtime.onMessage.addListener((request, sendResponse) =>{
     if (request.action === "send_data") {
-        fetch("http://localhost:3333/pacientes", {
+        fetch("http://localhost:3333/*", {
             method: "POST",
             mode: "cors",
             headers: {"Content-Type": "application/json"},
@@ -12,9 +13,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) =>{
                         
         return true;
     }
-    
+//Request JSON from API and send form scripDataEntry.js
     if (request.action === "search_data") {
-        fetch("http://localhost:3333/pacientes", {
+        fetch("http://localhost:3333/*", {
             method: "GET",
             mode: "cors",
             headers: {"Content-Type": "application/json"},

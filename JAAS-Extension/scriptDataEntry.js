@@ -1,10 +1,12 @@
 setTimeout(() => {
     chrome.runtime.sendMessage({ action: "search_data"}, (response) =>{
+        //Received from API data JSON
         if(response.status){
             const listPacientes = response.payloadAPI
             const objPaciente = listPacientes[listPacientes.length - 1];
             console.log("Dados do paciente recebidos:", objPaciente);
 
+            //Configure data entry
             //NameMom
             const NameMomCamp = document.querySelector('input[formcontrolname="nomeMae"]');
             NameMomCamp.value = objPaciente.NameMom;
@@ -56,21 +58,21 @@ setTimeout(() => {
             const campcityendevent = new Event('input', { bubbles: true });
             cityEndCamp.dispatchEvent(campcityendevent);
             
-            const radioResidenciaFixa = document.querySelector('input[type="radio"][value="fixa"]');
+            //const radioResidenciaFixa = document.querySelector('input[type="radio"][value="fixa"]');
 
+            //Click Button Save
             setTimeout(() => {
-                const todosParagrafos = Array.from(document.querySelectorAll('p'));
-                const textoSalvar = todosParagrafos.find(p => p.textContent.trim() === "Salvar Alterações");
+                const allElements = Array.from(document.querySelectorAll('p'));
+                const textSave = allElements.find(p => p.textContent.trim() === "Salvar Alterações");
 
-                if (textoSalvar) {
-                    const botaoSalvar = textoSalvar.closest('button');
-                    
-                    if (botaoSalvar) {
-                        if (botaoSalvar.disabled) {
+                if (textSave) {
+                    const buttonSave = textSave.closest('button'); 
+                    if (buttonSave) {
+                        if (buttonSave.disabled) {
                             console.error("Block.");
                         } else {
                             console.log("Find");
-                            botaoSalvar.dispatchEvent(new MouseEvent('click', {
+                            buttonSave.dispatchEvent(new MouseEvent('click', {
                                 view: window,
                                 bubbles: true,
                                 cancelable: true
@@ -80,10 +82,9 @@ setTimeout(() => {
                 } else {
                     console.error("Not Find");
                 }
-
-            }, 1500);
+            }, 800);
         } 
     })
 
-},5000)
+},3000)
 

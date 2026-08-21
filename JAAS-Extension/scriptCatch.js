@@ -21,6 +21,7 @@ setTimeout(() =>{
     //.trim() = limpa os espaços em branco
 
 }
+//Json Initialize and send from background validation
 const jsonArch = JSON.stringify(dataPacient, null , 2)
 console.log(jsonArch)
 
